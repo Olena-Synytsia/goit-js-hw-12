@@ -6,12 +6,25 @@
     <title>TEST HW-12</title>
     
     <script type="module" crossorigin src="/test-goit-js-hw-12/commonHelpers.js"></script>
-    <link rel="stylesheet" href="/test-goit-js-hw-12/assets/index-ecc71c65.css">
+    <link rel="modulepreload" crossorigin href="/test-goit-js-hw-12/assets/vendor-8c59ed88.js">
+    <link rel="stylesheet" href="/test-goit-js-hw-12/assets/vendor-1cd1f9d9.css">
+    <link rel="stylesheet" href="/test-goit-js-hw-12/assets/index-cd538e9e.css">
   </head>
   <body>
     <section>
-      <h1>Example page title</h1>
-      <div></div>
+      <div class="container-form-search">
+        <form class="form-search">
+          <input
+            type="text"
+            class="input-search"
+            placeholder="Search images..."
+            name="query"
+          />
+          <button type="submit" class="btn-search">Search</button>
+        </form>
+        <span class="loader" style="display: none"></span>
+        <div class="gallery"></div>
+      </div>
     </section>
 
     
