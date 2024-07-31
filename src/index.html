@@ -8,8 +8,19 @@
   </head>
   <body>
     <section>
-      <h1>Example page title</h1>
-      <div></div>
+      <div class="container-form-search">
+        <form class="form-search">
+          <input
+            type="text"
+            class="input-search"
+            placeholder="Search images..."
+            name="query"
+          />
+          <button type="submit" class="btn-search">Search</button>
+        </form>
+        <span class="loader" style="display: none"></span>
+        <div class="gallery"></div>
+      </div>
     </section>
 
     <script type="module" src="./main.js"></script>
