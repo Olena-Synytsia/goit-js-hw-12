@@ -81,6 +81,7 @@ p b {
   border-radius: 50%;
   color: #6c8cff;
   animation: fill 1s ease-in infinite alternate;
+  margin-bottom: 32px;
 }
 .loader::before,
 .loader::after {
@@ -150,7 +151,7 @@ input::placeholder {
   opacity: 1;
 }
 
-.btn-search {
+.btn {
   width: 91px;
   height: 40px;
   padding: 8px 16px;
@@ -162,7 +163,8 @@ input::placeholder {
   text-align: center;
 }
 
-.btn-search:focus {
+.btn-search:focus,
+.btn-search:hover {
   cursor: pointer;
   background-color: #6c8cff;
   transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
