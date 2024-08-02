@@ -7,11 +7,36 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const form = document.querySelector('.form-search');
 const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
+const loadMoreBtn = document.querySelector('[data-action="load-more"]');
 let lightbox;
+let currentPage = 1;
+let totalHits = 0;
+
+class ButtonService {
+  constructor(buttonEl, hiddenClass) {
+    this.buttonEl = buttonEl;
+    this.hiddenClass = hiddenClass;
+  }
+  hide() {
+    this.buttonEl.classList.add(this.hiddenClass);
+  }
+  show() {
+    this.buttonEl.classList.remove(this.hiddenClass);
+  }
+  disable() {
+    this.buttonEl.disabled = true;
+  }
+  enable() {
+    this.buttonEl.disabled = false;
+  }
+}
+
+const buttonService = new ButtonService(loadMoreBtn, 'is-hidden');
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
   const query = event.target.elements['query'].value.trim();
+  currentPage = 1;
 
   if (!query) {
     showError('Search field cannot be empty');
@@ -19,9 +44,10 @@ form.addEventListener('submit', async event => {
   }
 
   loader.style.display = 'flex';
+  buttonService.hide();
 
   try {
-    const images = await fetchImages(query);
+    const images = await fetchImages(query, currentPage);
 
     if (images.length === 0) {
       showError(
@@ -35,6 +61,8 @@ form.addEventListener('submit', async event => {
         captionsData: 'alt',
         captionDelay: 250,
       });
+      totalHits = images.length;
+      buttonService.show();
     }
   } catch (error) {
     showError('Failed to fetch images');
@@ -43,3 +71,6 @@ form.addEventListener('submit', async event => {
     form.reset();
   }
 });
+
+console.log(buttonService);
+console.dir(loadMoreBtn);
