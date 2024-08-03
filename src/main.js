@@ -37,7 +37,6 @@ const buttonService = new ButtonService(loadMoreBtn, 'is-hidden');
 form.addEventListener('submit', async event => {
   event.preventDefault();
   query = event.target.elements['query'].value.trim();
-  // currentPage = 1;
 
   if (!query) {
     showError('Search field cannot be empty');
