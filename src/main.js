@@ -53,6 +53,7 @@ form.addEventListener('submit', async event => {
       showError(
         'Sorry, there are no images matching your search query. Please try again!'
       );
+
       gallery.innerHTML = '';
       buttonService.hide();
     } else {
@@ -62,9 +63,11 @@ form.addEventListener('submit', async event => {
         captionsData: 'alt',
         captionDelay: 250,
       });
+
       lightbox.refresh();
       totalHits = images.length;
       buttonService.show();
+
       if (totalHits < 15) {
         buttonService.hide();
         showError("We're sorry, but you've reached the end of search results.");
@@ -79,8 +82,8 @@ form.addEventListener('submit', async event => {
 });
 
 loadMoreBtn.addEventListener('click', async () => {
-  currentPage += 1;
   loader.style.display = 'flex';
+  currentPage += 1;
 
   try {
     const images = await fetchImages(query, currentPage);
