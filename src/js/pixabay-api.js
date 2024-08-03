@@ -12,8 +12,8 @@ export async function fetchImages(query, page = 1, perPage = 15) {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: true,
-        page: page,
-        perPage: perPage,
+        page,
+        perPage,
       },
     });
     return response.data.hits;

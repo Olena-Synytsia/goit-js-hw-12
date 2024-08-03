@@ -37,7 +37,7 @@ const buttonService = new ButtonService(loadMoreBtn, 'is-hidden');
 form.addEventListener('submit', async event => {
   event.preventDefault();
   query = event.target.elements['query'].value.trim();
-  currentPage = 1;
+  // currentPage = 1;
 
   if (!query) {
     showError('Search field cannot be empty');
@@ -63,6 +63,7 @@ form.addEventListener('submit', async event => {
         captionsData: 'alt',
         captionDelay: 250,
       });
+      lightbox.refresh();
       totalHits = images.length;
       buttonService.show();
       if (totalHits < 15) {
@@ -87,7 +88,7 @@ loadMoreBtn.addEventListener('click', async () => {
 
     if (images.length === 0) {
       buttonService.hide();
-      showError('На жаль, ви досягли кінця результатів пошуку.');
+      showError("We're sorry, but you've reached the end of search results.");
     } else {
       gallery.insertAdjacentHTML('beforeend', createGalleryMarkup(images));
       lightbox?.destroy();
@@ -95,6 +96,8 @@ loadMoreBtn.addEventListener('click', async () => {
         captionsData: 'alt',
         captionDelay: 250,
       });
+
+      lightbox.refresh();
 
       const { height: cardHeight } = document
         .querySelector('.gallery-image')
@@ -104,14 +107,13 @@ loadMoreBtn.addEventListener('click', async () => {
         behavior: 'smooth',
       });
 
-      totalHits += images.length;
-      if (totalHits >= 15 * currentPage) {
+      if (images.length < 15) {
         buttonService.hide();
-        showError('На жаль, ви досягли кінця результатів пошуку.');
+        showError("We're sorry, but you've reached the end of search results.");
       }
     }
   } catch (error) {
-    showError('Не вдалося завантажити зображення');
+    showError('Failed to load images');
   } finally {
     loader.style.display = 'none';
   }
