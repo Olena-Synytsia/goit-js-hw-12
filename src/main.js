@@ -42,6 +42,7 @@ form.addEventListener('submit', async event => {
     showError('Search field cannot be empty');
     return;
   }
+  currentPage = 1;
 
   loader.style.display = 'flex';
   buttonService.hide();
