@@ -26,7 +26,6 @@
 /*  ---   GLOBAL   ---  */
 
 body {
-  /* width: 1440px; */
   margin: 0;
 }
 
@@ -83,6 +82,7 @@ p b {
   animation: fill 1s ease-in infinite alternate;
   margin-bottom: 32px;
 }
+
 .loader::before,
 .loader::after {
   content: '';
